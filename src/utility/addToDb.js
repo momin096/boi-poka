@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 const getStoredReadList = () => {
     // read list 
     const storedListStr = localStorage.getItem('read-list');
@@ -5,13 +7,13 @@ const getStoredReadList = () => {
         const storedList = JSON.parse(storedListStr);
         return storedList;
     }
-    else{
-        
+    else {
+
         return [];
 
     }
 
-    
+
 }
 
 const addToStoredReadList = (id) => {
@@ -19,38 +21,43 @@ const addToStoredReadList = (id) => {
 
     if (storedList.includes(id)) {
         // already exit
-        alert('this is already exist');
+        toast('This book is already exist in Read List')
+
     }
     else {
         storedList.push(id);
         const storedListStr = JSON.stringify(storedList);
         localStorage.setItem('read-list', storedListStr);
+        toast('This book is added to the Read List')
     }
 }
 
 
-const getStoredWishList = () =>{
+const getStoredWishList = () => {
     const storedWishListStr = localStorage.getItem('wish-list');
-    if(storedWishListStr){
+    if (storedWishListStr) {
         const storedWishList = JSON.parse(storedWishListStr);
         return storedWishList;
     }
-    else{
+    else {
         return [];
     }
 }
 
 
-const addToWishList = (id) =>{
+const addToWishList = (id) => {
     const storedWishList = getStoredWishList();
-    if (storedWishList.includes(id)){
-        alert('already exist');
+    if (storedWishList.includes(id)) {
+        toast('This book is already in Wish List')
+
     }
-    else{
+    else {
         storedWishList.push(id);
         const storedWishListStr = JSON.stringify(storedWishList);
         localStorage.setItem('wish-list', storedWishListStr);
+        toast('This book is added to the Wish List')
+
     }
 }
 
-export { addToStoredReadList , addToWishList }
+export { addToStoredReadList, addToWishList, getStoredReadList, getStoredWishList }
